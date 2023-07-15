@@ -42,7 +42,7 @@ fastify.get("/ctof/:temp", function (request, reply) {
 
 fastify.get("/weather/:city", async function (request, reply) {
   const { city } = request.params;
-  console.log("City name" & city);
+  console.log("City name is " & city);
   var apiToCall =
     "https://api.openweathermap.org/data/2.5/weather?q=" &
     city &
