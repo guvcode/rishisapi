@@ -52,7 +52,7 @@ fastify.get("/weather/:city", async function (request, reply) {
     .get(apiToCall)
     .then(function (response) {
       // handle success
-      console.log(response);
+      console.log(JSON.stringify(response));
     })
     .catch(function (error) {
       // handle error
