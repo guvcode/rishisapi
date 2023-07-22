@@ -41,26 +41,32 @@ fastify.get("/ctof/:temp", function (request, reply) {
 });
 
 fastify.get("/weather/:city", async function (request, reply) {
-  const { city } = request.params;
-  console.log("City name is " & city);
-  var apiToCall =
-    "https://api.openweathermap.org/data/2.5/weather?q=" &
-    city &
-    "&appid=d29300a88f0ef96ff3588b6c3e5ec09d";
 
-  axios
-    .get(apiToCall)
-    .then(function (response) {
-      // handle success
-      reply.send(response);
-      console.log(JSON.stringify(response));
-    })
-    .catch(function (error) {
-      // handle error
-      reply.send(error);
-      console.log(error);
-    })
-    .finally(function () {
-      // always executed
-    });
+
+  try {
+    const { city } = request.params;
+    console.log("City name is " & city);
+    var apiToCall =
+      "https://api.openweathermap.org/data/2.5/weather?q=" &
+      city &
+      "&appid=d29300a88f0ef96ff3588b6c3e5ec09d";
+
+    axios
+      .get(apiToCall)
+      .then(function (response) {
+        // handle success
+        reply.send(response);
+        console.log(JSON.stringify(response));
+      })
+      .catch(function (error) {
+        // handle error
+        reply.send(error);
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  } catch (e) {
+    reply.send(JSON.stringify(e))
+  }
 });
