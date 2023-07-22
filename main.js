@@ -43,6 +43,7 @@ fastify.get("/ctof/:temp", function (request, reply) {
 fastify.get("/weather/:city", async function (request, reply) {
 
 
+
   try {
     const { city } = request.params;
     console.log("City name is " & city);
@@ -51,8 +52,10 @@ fastify.get("/weather/:city", async function (request, reply) {
       city &
       "&appid=d29300a88f0ef96ff3588b6c3e5ec09d";
 
-    axios
-      .get(apiToCall)
+      const {data} = await got.get(apiToCall);
+      reply.send(JSON.stringify(data));
+    /* axios
+      .post(apiToCall)
       .then(function (response) {
         // handle success
         reply.send(response);
@@ -65,7 +68,7 @@ fastify.get("/weather/:city", async function (request, reply) {
       })
       .finally(function () {
         // always executed
-      });
+      }); */
   } catch (e) {
     reply.send(JSON.stringify(e))
   }
