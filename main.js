@@ -52,8 +52,26 @@ fastify.get("/weather/:city", async function (request, reply) {
       city &
       "&appid=d29300a88f0ef96ff3588b6c3e5ec09d";
 
-      const {data} = await got.get(apiToCall);
-      reply.send(JSON.stringify(data));
+      axios({
+        "method":"GET",
+        "url":"https://community-open-weather-map.p.rapidapi.com/weather",
+        "headers":{
+        "content-type":"application/octet-stream",
+        "x-rapidapi-host":"community-open-weather-map.p.rapidapi.com",
+        "x-rapidapi-key":"[your rapidapi key]"
+        },"params":{
+        "q":"London%2Cuk"
+        }
+        })
+        .then((response)=>{
+          console.log(response)
+        })
+        .catch((error)=>{
+          console.log(error)
+        })
+        
+      //const {data} = await got.get(apiToCall);
+     // reply.send(JSON.stringify(data));
     /* axios
       .post(apiToCall)
       .then(function (response) {
