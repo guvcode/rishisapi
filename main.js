@@ -1,6 +1,6 @@
 import Fastify from "fastify";
-import got from "got";
-import axios from "axios";
+//import got from "got";
+//import axios from "axios";
 
 const port = process.env.PORT || 80;
 
@@ -40,24 +40,24 @@ fastify.get("/ctof/:temp", function (request, reply) {
   reply.send(tempinFahrenheit);
 });
 
-fastify.get("/weatherv2/:city", async function (request, reply) {
+fastify.get("/weather/:city", async function (request, reply) {
   const { city } = request.params;
   const apiKey = "d29300a88f0ef96ff3588b6c3e5ec09d";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
   return fetch(url)
     .then(response => response.json())
     .then(data => {
-      const weatherData = {
+     /*  const weatherData = {
         temperature: data.main.temp,
         condition: data.weather[0].main,
         location: data.name,
-      };
+      }; */
       return data;
     });
 
 });
 
-fastify.get("/weather/:city", async function (request, reply) {
+fastify.get("/weatherv2/:city", async function (request, reply) {
 
   try {
     const { city } = request.params;
