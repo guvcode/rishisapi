@@ -41,7 +41,7 @@ fastify.get("/ctof/:temp", function (request, reply) {
 });
 
 fastify.get("/weatherv2/:city", async function (request, reply) {
-
+  const { city } = request.params;
   const apiKey = "d29300a88f0ef96ff3588b6c3e5ec09d";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
   return fetch(url)
