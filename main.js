@@ -52,7 +52,7 @@ fastify.get("/weatherv2/:city", async function (request, reply) {
         condition: data.weather[0].main,
         location: data.name,
       };
-      return weatherData;
+      return data;
     });
 
 });
